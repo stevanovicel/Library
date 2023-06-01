@@ -1,0 +1,49 @@
+
+
+.bg {
+    height: 100vh;
+    background-image: url(../../assets/img/library2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+p {
+    width: 800px;
+    letter-spacing: 2px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#section {
+    background-color: rgba(0, 0, 0, 0.697);
+    padding: 30px 180px 60px 180px;
+}
+
+a {
+    margin: auto;
+    padding-top: 50px;
+}
+
+button:hover {
+    background-color: #6b583f;
+    color: white;
+}
+
+button {
+    padding: 10px 20px;
+    letter-spacing: 1px;
+}
+/* 
+#first {
+    background-color:#8d3f3f; 
+
+}
+
+#second {
+    background-color:#a74d4d; 
+} */

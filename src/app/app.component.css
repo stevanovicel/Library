@@ -1,0 +1,45 @@
+* {
+    background-color: #534430	;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #ba9b5e;
+}
+
+/* img {
+    padding-top: 25px;
+    padding-left: 10px;
+} */
+
+.profile {
+    background-color: rgba(255, 255, 255, 0.286);
+    color: rgb(255, 255, 255);
+    padding: 1px 30px;
+    position: relative;
+}
+
+.profile:hover {
+    background-color: #796346a7;
+}
+
+.profile:active {
+    background-color: #534430;
+}
+
+
+mat-toolbar {
+    height: 80px;
+}
+
+mat-icon  {
+    background-color: #53443000;
+    position: relative;
+    left: 7px;
+    top: 3px;
+    
+}

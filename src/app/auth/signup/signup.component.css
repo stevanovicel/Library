@@ -1,0 +1,28 @@
+.signup {
+    height: 100vh;
+    background-image: url(../../../assets/img/library1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    padding-bottom: 30px;
+}
+
+form {
+    padding: 10px 50px;
+    background-color: rgba(0, 0, 0, 0.456); 
+}
+
+mat-form-field {
+    width: 400px;
+}
+
+button:hover {
+    background-color: rgb(168, 127, 77);
+}
+
+button {
+    background-color: rgb(112, 94, 28);
+}
+

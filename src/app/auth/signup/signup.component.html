@@ -1,0 +1,42 @@
+<section class="signup" fxLayoutAlign="center center">
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <h1>Sign up</h1>
+        <!-- Ime -->
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input required matInput type="name" placeholder="Your name" ngModel name="name">
+        </mat-form-field>
+
+        <!-- Prezime -->
+        <mat-form-field appearance="outline">
+            <mat-label>Surname</mat-label>
+            <input required matInput type="surname" placeholder="Your surname" ngModel name="surname">
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="Your email" ngModel name="email" email required #emailInput="ngModel">
+            <mat-error *ngIf="emailInput.hasError('required')">Field should not be empty</mat-error>
+            <mat-error *ngIf="!emailInput.hasError('required')">Please use correct email format</mat-error>
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="outline" hintLabel="Please enter minimum 8 characters.">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Your password" ngModel name="password" required minlength="8" #passInput="ngModel">
+            <mat-hint align="end"> {{ passInput.value?.length }} / 8 </mat-hint>
+        </mat-form-field>
+
+        <!-- Submit -->
+        <button type="submit" mat-raised-button [disabled]="f.invalid">Submit</button>
+
+        <!-- Error if user already exists -->
+        <mat-label *ngIf="errorExists">{{ errorText }}</mat-label>
+
+        <!-- Checkbox -->
+        <mat-checkbox color="primary" ngModel name="acceptance" required>
+            I accept the terms of conditions of use.
+        </mat-checkbox>
+    </form>
+</section>

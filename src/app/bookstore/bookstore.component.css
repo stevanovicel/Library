@@ -1,0 +1,38 @@
+.bookstore {
+    height: 100vh;
+    background-image: url(../../../src/assets/img/library3.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+mat-table {
+    background-color: rgba(0, 0, 0, 0.244);
+    width: 80%;
+}
+
+mat-paginator {
+    background-color: rgba(0, 0, 0, 0.566);
+}
+
+mat-cell {
+   padding: 20px;
+   background-color: rgba(0, 0, 0, 0.405);
+}
+
+mat-form-field {
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+.table {
+    margin: auto;
+    width: 85%;
+}
+
+button:hover {
+    background-color: rgb(168, 127, 77);
+}
+
+button {
+    background-color: rgb(112, 94, 28);
+}
