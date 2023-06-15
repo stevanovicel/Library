@@ -126,7 +126,7 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>Remove from cart</mat-header-cell>
           <mat-cell *matCellDef="let element">
             <button mat-icon-button (click)="removeFromCart(element)"
-              [disabled]="element.status == 'IN PROGRESS' || element.status == 'CANCELLED'">
+              [disabled]="element.status == 'IN PROGRESS'">
               <mat-icon>close</mat-icon>
             </button>
           </mat-cell>
