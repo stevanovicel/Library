@@ -1,0 +1,48 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav opened="false">
+        <mat-nav-list>
+            <a class="profile" *ngIf="this.userService.getIsUserLoggedIn()"
+                (click)="openProfile(this.userService.currentUser.id)">
+                {{ this.userService.currentUser.name }}
+                <mat-icon>person</mat-icon>
+            </a>
+            <a mat-list-item routerLink="/signup">Sign up</a>
+            <a mat-list-item routerLink="/login">Log in</a>
+            <a mat-list-item routerLink="/bookstore">Shop</a>
+            <a mat-list-item routerLink="/cart">Cart</a>
+            <a mat-list-item routerLink="">Logout</a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <div fxHide.gt-xs>
+                <button mat-button (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+
+            <div>
+                <a routerLink=""><img src="assets/img/logo.png"></a>
+            </div>
+
+            <!-- Pozivanje komponente profila korisnika -->
+            <div fxFlex fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="50px" fxHide.xs>
+                <a class="profile" *ngIf="this.userService.getIsUserLoggedIn()"
+                    (click)="openProfile(this.userService.currentUser.id)">
+                    {{ this.userService.currentUser.name }}
+                    <mat-icon>person</mat-icon>
+                </a>
+                <a routerLink="">Home</a>
+                <a routerLink="/signup">Sign up</a>
+                <a routerLink="/login">Log in</a>
+                <a routerLink="/bookstore">Shop</a>
+                <a routerLink="/cart">Cart</a>
+
+            </div>
+        </mat-toolbar>
+
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

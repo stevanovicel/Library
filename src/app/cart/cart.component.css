@@ -1,0 +1,38 @@
+.cart {
+    height: 100vh;
+    background-image: url(../../../src/assets/img/library4.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    margin: auto;
+    letter-spacing: 5px;
+    border: 1px solid white;
+    padding: 10px 30px;
+}
+
+button {
+    background-color: rgba(119, 103, 35, 0.486);
+}
+
+button:hover {
+    background-color: rgba(196, 156, 96, 0.673);
+}
+
+mat-table {
+    background-color: rgba(0, 0, 0, 0.244);
+}
+
+mat-paginator {
+    background-color: rgba(0, 0, 0, 0.566);
+}
+
+mat-cell {
+   background-color: rgba(0, 0, 0, 0.405);
+}
+
+mat-form-field {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}

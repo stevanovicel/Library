@@ -1,0 +1,146 @@
+<section class="cart" fxFlex fxLayout="column">
+  <h1 *ngIf="listIsEmpty()">Your cart is empty</h1>
+  <div class="table">
+    <!-- <h1 *ngIf="listIsEmpty()">Your cart is empty</h1> -->
+    <!-- Filter / pretraga -->
+    <div fxLayoutAlign="center center" *ngIf="!listIsEmpty()">
+      <mat-form-field fxFlex="35%">
+        <input matInput type="text" (keyup)="doFilter($any($event.target).value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+    <div class="table" *ngIf="!listIsEmpty()">
+      <mat-table [dataSource]="cartSource" matSort>
+
+        <!-- Name -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+          <mat-footer-cell *matFooterCellDef>
+          </mat-footer-cell>
+        </ng-container>
+
+        <!-- Genre -->
+        <ng-container matColumnDef="genre">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Genre</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.genre }} </mat-cell>
+          <mat-footer-cell *matFooterCellDef>
+          </mat-footer-cell>
+        </ng-container>
+
+        <!-- Type -->
+        <ng-container matColumnDef="type">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.type }} </mat-cell>
+          <mat-footer-cell *matFooterCellDef>
+          </mat-footer-cell>
+        </ng-container>
+
+        <!-- Pages -->
+        <ng-container matColumnDef="pages">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Page</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.pages }} </mat-cell>
+          <mat-footer-cell *matFooterCellDef>
+          </mat-footer-cell>
+        </ng-container>
+
+        <!-- Author -->
+        <ng-container matColumnDef="author">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Author</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.author }} </mat-cell>
+          <mat-footer-cell *matFooterCellDef>
+          </mat-footer-cell>
+        </ng-container>
+
+        <!-- Amount -->
+        <ng-container matColumnDef="amount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
+          <mat-cell *matCellDef="let element">x {{ element.amount }}
+            <button mat-mini-fab (click)="addAmount(element)" [disabled]="element.status == 'ARRIVED'">+</button>
+          </mat-cell>
+          <mat-footer-cell *matFooterCellDef>Total price: {{ calculateTotal() }} $</mat-footer-cell>
+        </ng-container>
+
+        <!-- Price -->
+        <ng-container matColumnDef="price">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+          <mat-cell *matCellDef="let element"> $ {{ element.price }} </mat-cell>
+          <mat-footer-cell *matFooterCellDef>
+          </mat-footer-cell>
+        </ng-container>
+
+        <!-- Status -->
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Status
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.status }} </mat-cell>
+          <mat-footer-cell *matFooterCellDef>
+            <button mat-raised-button>CHECKOUT</button>
+          </mat-footer-cell>
+        </ng-container>
+
+        <!-- Arrived -->
+        <ng-container matColumnDef="arrived">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Change to Arrived
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-raised-button (click)="setBookStatus(element, 'ARRIVED')">
+              ARRIVED
+            </button>
+          </mat-cell>
+          <mat-footer-cell *matFooterCellDef>
+          </mat-footer-cell>
+        </ng-container>
+
+        <!-- Cancelled -->
+        <ng-container matColumnDef="cancelled">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Change to Cancelled
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-raised-button (click)="setBookStatus(element, 'CANCELLED')">
+              CANCELLED
+            </button>
+          </mat-cell>
+          <mat-footer-cell *matFooterCellDef>
+          </mat-footer-cell>
+        </ng-container>
+
+        <!-- Reviews -->
+        <ng-container matColumnDef="review">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Reviews</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ this.reviewService.calculateGradeForBook(element.id) | number }} / 5
+            <button mat-icon-button (click)="leaveAReview(element)"
+              [disabled]="element.status == 'IN PROGRESS' || element.status == 'CANCELLED'">
+              <mat-icon>star</mat-icon>
+            </button>
+          </mat-cell>
+          <mat-footer-cell *matFooterCellDef>
+          </mat-footer-cell>
+        </ng-container>
+
+        <!-- Remove from cart -->
+        <ng-container matColumnDef="removeFromCart">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Remove from cart</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="removeFromCart(element)"
+              [disabled]="element.status == 'IN PROGRESS'">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-cell>
+          <mat-footer-cell *matFooterCellDef>
+          </mat-footer-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let rows; columns: displayedColumns"></mat-row>
+        <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
+      </mat-table>
+
+      <mat-paginator [pageSizeOptions]="[4,6,10]" [pageSize]="5"> </mat-paginator>
+    </div>
+  </div>
+
+</section>

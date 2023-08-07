@@ -1,0 +1,19 @@
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+*{
+    font-family: Lato, sans-serif;
+}
+
+html, body {
+    height: 100%;
+
+}
+
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+    height: 100%;
+}
+
+mat-sidenav {
+    width: 250px;
+}
